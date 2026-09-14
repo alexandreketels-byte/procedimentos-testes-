@@ -1,48 +1,264 @@
+/* =========================================================
+   PORTAL DE PROCEDIMENTOS DIS — style.css
+   Reorganizado: tokens de cor/espaçamento, barra de topo em
+   flexbox (sem posicionamento fixo individual por elemento),
+   e um único bloco de responsividade por breakpoint.
+   ========================================================= */
+
+:root {
+  --laranja: #ff8c00;
+  --dourado: #ffd700;
+  --gradiente: linear-gradient(90deg, var(--laranja), var(--dourado));
+  --gradiente-parceiros: linear-gradient(90deg, #6a11cb, #2575fc);
+  --gradiente-downloads: linear-gradient(90deg, #28a745, #5cd65c);
+
+  --vidro-fraco: rgba(0, 0, 0, 0.55);
+  --vidro-medio: rgba(0, 0, 0, 0.6);
+  --vidro-forte: rgba(0, 0, 0, 0.85);
+
+  --texto-claro: #ffffff;
+  --texto-acento: var(--dourado);
+  --texto-alerta: #ffeb3b;
+
+  --sombra-suave: 0 4px 10px rgba(0, 0, 0, 0.4);
+  --sombra-media: 3px 3px 6px rgba(0, 0, 0, 0.6);
+  --sombra-forte: 5px 5px 8px rgba(0, 0, 0, 0.8);
+
+  --raio: 10px;
+  --raio-pill: 20px;
+
+  --espaco-1: 8px;
+  --espaco-2: 12px;
+  --espaco-3: 20px;
+  --espaco-4: 30px;
+
+  --largura-leitura: 700px;
+  --transicao: 0.25s ease;
+
+  --altura-topo: 64px; /* referência para espaçamento do conteúdo abaixo da barra fixa */
+}
+
+/* ===== BASE ===== */
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: "Segoe UI", sans-serif;
   background: url('fundo.jpeg') no-repeat center center fixed;
   background-size: cover;
-  color: white;
+  color: var(--texto-claro);
+}
+
+img {
+  max-width: 100%;
 }
 
 .container {
   text-align: center;
-  margin-top: 8vh;
-  margin-bottom: 8vh;
+  max-width: 1100px;
+  margin: 6vh auto 8vh;
+  padding: 0 var(--espaco-3);
 }
 
 h1 {
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-  font-size: 2.5rem;
-  margin-bottom: 5vh;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  letter-spacing: 1px;
+  margin: 0 0 5vh;
 }
 
-/* ===== MENU ===== */
+/* ===== BARRA DE TOPO (notificações + downloads + transportadoras) ===== */
+/* Fica no fluxo normal do documento (sticky, não fixed) — resolve
+   a sobreposição com o título sem precisar de margin-top mágico. */
+
+.topo-fixo {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-2);
+  padding: var(--espaco-2) var(--espaco-3);
+  background: var(--vidro-fraco);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.topo-grupo {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-2);
+  flex-wrap: wrap;
+}
+
+#botaoNotificacoes,
+.dropbtn-lateral {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gradiente);
+  color: black;
+  font-weight: bold;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: var(--sombra-media);
+  cursor: pointer;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  transition: transform var(--transicao);
+  text-decoration: none;
+}
+
+.dropbtn-lateral {
+  background: var(--gradiente-downloads);
+}
+
+#botaoNotificacoes:hover,
+.dropbtn-lateral:hover {
+  transform: scale(1.05);
+}
+
+.dropdown-lateral {
+  position: relative;
+}
+
+.dropdown-content-lateral {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: var(--vidro-forte);
+  min-width: 240px;
+  border-radius: var(--raio);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  padding: var(--espaco-1) 0;
+  z-index: 1000;
+}
+
+.dropdown-lateral:hover .dropdown-content-lateral,
+.dropdown-lateral:focus-within .dropdown-content-lateral {
+  display: flex;
+}
+
+.dropdown-content-lateral a {
+  color: black;
+  background: linear-gradient(90deg, white, gold);
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 6px;
+  margin: 4px 10px;
+  text-align: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  transition: transform var(--transicao);
+}
+
+.dropdown-content-lateral a:hover {
+  transform: scale(1.03);
+}
+
+.transportadoras-topo {
+  justify-content: flex-end;
+}
+
+.transportadoras-topo img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: white;
+  padding: 3px;
+  cursor: pointer;
+  transition: transform var(--transicao);
+}
+
+.transportadoras-topo img:hover {
+  transform: scale(1.1);
+}
+
+/* ===== BUSCA GLOBAL ===== */
+
+.search-global {
+  margin: var(--espaco-4) auto var(--espaco-2);
+  text-align: center;
+  position: relative;
+}
+
+#buscaGlobal {
+  width: 90%;
+  max-width: 500px;
+  padding: 12px 16px;
+  border-radius: var(--raio);
+  border: none;
+  font-size: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#resultadosBusca {
+  display: none;
+  background: var(--vidro-forte);
+  max-width: 500px;
+  margin: 10px auto 0;
+  border-radius: var(--raio);
+  overflow: hidden;
+  text-align: left;
+}
+
+.resultado-item {
+  padding: 10px 16px;
+  color: white;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.resultado-item:last-child {
+  border-bottom: none;
+}
+
+.resultado-item:hover {
+  background: gold;
+  color: black;
+}
+
+/* ===== MENU PRINCIPAL ===== */
+
 .menu {
   display: flex;
   justify-content: center;
-  margin-bottom: 40px;
+  margin-bottom: var(--espaco-4);
 }
 
 .menu ul {
   list-style: none;
   display: flex;
-  gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
+  gap: var(--espaco-2);
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown {
+  position: relative;
 }
 
 .dropbtn {
-  background: linear-gradient(90deg, orange, gold);
+  display: inline-block;
+  background: var(--gradiente);
   color: black;
   text-decoration: none;
   font-weight: bold;
   padding: 12px 24px;
   border-radius: 8px;
-  box-shadow: 5px 5px 8px rgba(0,0,0,0.8);
-  transition: all 0.8s ease;
+  box-shadow: var(--sombra-forte);
+  transition: transform var(--transicao), background var(--transicao);
+  white-space: nowrap;
 }
 
 .dropbtn:hover {
@@ -50,205 +266,224 @@ h1 {
   transform: scale(1.05);
 }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
 .dropdown-content {
   display: none;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   position: absolute;
+  top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(0,0,0,0.85);
-  min-width: 250px;
-  border-radius: 10px;
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
-  z-index: 1;
-  padding: 10px 0;
+  background-color: var(--vidro-forte);
+  min-width: 280px;
+  max-width: 340px;
+  border-radius: var(--raio);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  z-index: 500;
+  padding: var(--espaco-1) 0;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
   display: flex;
 }
 
 .dropdown-content a {
-  width: 90%;
   color: black;
   background: linear-gradient(90deg, white, gold);
   padding: 10px 15px;
   text-decoration: none;
   border-radius: 6px;
-  margin: 5px 0;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-  transition: 0.3s;
+  margin: 4px 10px;
+  text-align: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  transition: transform var(--transicao);
 }
 
 .dropdown-content a:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
-/* ===== PESQUISA ===== */
+.botao-parceiros {
+  background: var(--gradiente-parceiros) !important;
+  color: white !important;
+}
+
+/* ===== BUSCA DE CONTATOS ===== */
+
 .search-box {
-  margin: 20px auto;
-}
-
-.titulo-contatos {
-  margin-top: 10px;
-  font-size: 1.8rem;
-  letter-spacing: 2px;
-  color: gold;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+  margin: var(--espaco-3) auto;
 }
 
 .search-box input {
-  width: 80%;
+  width: 90%;
   max-width: 500px;
   padding: 10px 15px;
-  border-radius: 8px;
+  border-radius: var(--raio);
   border: none;
   outline: none;
   font-size: 1rem;
-  box-shadow: 0 0 8px rgba(0,0,0,0.5);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 }
 
-/* ===== CARDS ===== */
+.titulo-contatos {
+  margin-top: var(--espaco-2);
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  color: var(--texto-acento);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* ===== CARDS DE CONTATOS ===== */
+
 .cards-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 25px;
-  margin-top: 30px;
-  padding: 0 20px;
+  gap: var(--espaco-3);
+  margin-top: var(--espaco-3);
 }
 
 .card {
-  background: rgba(0,0,0,0.6);
-  border: 1px solid rgba(255,255,255,0.2);
+  background: var(--vidro-medio);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
-  padding: 20px;
+  padding: var(--espaco-3);
   width: 280px;
   color: white;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-  transition: transform 0.3s ease;
+  box-shadow: var(--sombra-suave);
+  transition: transform var(--transicao);
   backdrop-filter: blur(6px);
+  text-align: left;
 }
+
 .card:hover {
   transform: translateY(-5px);
 }
 
 .card .setor {
-  background: linear-gradient(90deg, orange, gold);
+  background: var(--gradiente);
   color: black;
   font-weight: bold;
   display: inline-block;
   padding: 5px 10px;
-  border-radius: 20px;
+  border-radius: var(--raio-pill);
   margin-bottom: 10px;
 }
 
 .card .nome {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: bold;
   margin-bottom: 8px;
 }
 
 .card .contato {
-  text-align: left;
-  margin-left: 10px;
+  margin: 4px 0;
 }
 
 .card .contato i {
   color: gold;
-  width: 25px;
+  width: 22px;
 }
 
-/* ===== RODAPÉ ===== */
 #contadorResultados {
-  margin-top: 25px;
+  margin-top: var(--espaco-3);
   font-weight: bold;
 }
 
 #ultimaAtualizacao {
   margin-top: 5px;
   font-size: 14px;
-  color: #ffeb3b;
+  color: var(--texto-alerta);
   text-shadow: 1px 1px 2px black;
 }
 
-/*/* Ajuste para telas pequenas */
-/* ===== RESPONSIVIDADE ===== */
-/* ===== AJUSTE RESPONSIVO SEM MUDAR FUNCIONAMENTO ===== */
-@media (max-width: 768px) {
-  .menu {
-    flex-direction: column;
-    align-items: center;
-  }
+/* ===== CONTEÚDO DE PROCEDIMENTO (renderizado a partir da planilha) ===== */
 
-  .menu ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-  }
-
-  .dropdown {
-    width: auto; /* deixa o botão acompanhar o texto */
-  }
-
-  .dropbtn {
-    display: inline-block;
-    width: auto; /* remove largura fixa */
-    padding: 14px 36px; /* dá mais espaço interno */
-    text-align: center;
-    font-size: 1rem;
-    white-space: nowrap; /* impede quebra de linha */
-  }
-
-  .dropdown-content {
-    position: static;
-    transform: none;
-    width: 100%;
-    margin-top: 8px;
-  }
-
-  .dropdown-content a {
-    font-size: 0.95rem;
-    width: 100%;
-    box-sizing: border-box;
-  }
+.procedimento-conteudo {
+  max-width: var(--largura-leitura);
+  margin: 0 auto;
+  text-align: left;
+  background: var(--vidro-medio);
+  border-radius: 12px;
+  padding: var(--espaco-4);
+  box-shadow: var(--sombra-suave);
+  backdrop-filter: blur(6px);
 }
+
+.procedimento-conteudo h2 {
+  color: var(--texto-acento);
+  margin-top: 0;
+  font-size: 1.4rem;
+}
+
+.procedimento-texto {
+  line-height: 1.65;
+}
+
+.procedimento-texto p {
+  margin: 0 0 14px;
+}
+
+.procedimento-texto ul,
+.procedimento-texto ol {
+  margin: 0 0 14px;
+  padding-left: 22px;
+}
+
+.procedimento-atualizado {
+  margin-top: var(--espaco-3);
+  font-size: 13px;
+  color: var(--texto-alerta);
+}
+
+.botao-voltar {
+  background: var(--gradiente);
+  color: black;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: bold;
+  box-shadow: var(--sombra-media);
+  cursor: pointer;
+  margin-bottom: var(--espaco-2);
+}
+
+/* ===== POPUP DE AVISOS ===== */
 
 #popupAviso {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
+  padding: var(--espaco-2);
 }
 
 .popup-conteudo {
+  position: relative;
   background: white;
   color: black;
   padding: 25px;
   border-radius: 12px;
-  text-align: center;
-  max-width: 300px;
-  max-height: 80vh;      /* <-- NOVO */
-  overflow-y: auto;      /* <-- NOVO */
+  text-align: left;
+  max-width: 340px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
   box-shadow: 0 0 10px black;
 }
 
-
+.popup-conteudo p {
+  text-align: left;
+  margin-bottom: 10px;
+}
 
 .popup-conteudo button {
-  margin-top: 15px;
+  display: block;
+  margin: 20px auto 0;
   padding: 8px 20px;
   border: none;
   background: gold;
@@ -257,191 +492,11 @@ h1 {
   cursor: pointer;
 }
 
-#botaoNotificacoes {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  background: linear-gradient(90deg, orange, gold);
-  color: black;
-  padding: 10px 20px;
-  font-weight: bold;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  z-index: 9999;
-  box-shadow: 3px 3px 6px rgba(0,0,0,0.6);
-  transition: 0.3s;
-}
-
-#botaoNotificacoes:hover {
-  transform: scale(1.05);
-}
-
 .linha-popup {
   border: none;
   border-top: 2px solid gold;
   margin: 12px 0;
   width: 100%;
-}
-
-/* Alinhar texto do popup à esquerda */
-#popupAviso .popup-conteudo {
-    text-align: left !important;
-}
-
-/* Também alinha cada linha dentro do popup */
-#popupAviso .popup-conteudo p {
-    text-align: left !important;
-    margin-bottom: 10px;
-}
-
-#popupAviso .popup-conteudo button {
-    display: block;
-    margin: 20px auto 0 auto; /* cima - lados - baixo */
-}
-
-/* ===== BUSCA GLOBAL ===== */
-.search-global {
-  margin: 20px auto;
-  text-align: center;
-}
-
-#buscaGlobal {
-  width: 80%;
-  max-width: 500px;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  font-size: 1rem;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-
-#resultadosBusca {
-  background: rgba(0,0,0,0.9);
-  max-width: 500px;
-  margin: 10px auto;
-  border-radius: 10px;
-  overflow: hidden;
-  display: none;
-}
-
-.resultado-item {
-  padding: 10px;
-  color: white;
-  cursor: pointer;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-}
-
-.resultado-item:hover {
-  background: gold;
-  color: black;
-}
-
-/* ===== BOTÃO DOWNLOADS LATERAL ===== */
-
-.dropdown-lateral {
-  position: fixed;
-  top: 15px; /* abaixo do botão notificações */
-  left: 15px;
-  z-index: 9999;
-}
-
-.dropbtn-lateral {
-  display: inline-block;
-  background: linear-gradient(90deg, #28a745, #5cd65c);
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 8px;
-  box-shadow: 3px 3px 6px rgba(0,0,0,0.6);
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.dropbtn-lateral:hover {
-  transform: scale(1.05);
-}
-
-.dropdown-content-lateral {
-  display: none;
-  flex-direction: column;
-  background-color: rgba(0,0,0,0.85);
-  min-width: 220px;
-  border-radius: 10px;
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
-  margin-top: 8px;
-  padding: 10px 0;
-}
-
-.dropdown-content-lateral a {
-  width: 90%;
-  color: black;
-  background: linear-gradient(90deg, white, gold);
-  padding: 10px 15px;
-  text-decoration: none;
-  border-radius: 6px;
-  margin: 5px auto;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-  transition: 0.3s;
-  text-align: center;
-}
-
-.dropdown-content-lateral a:hover {
-  transform: scale(1.05);
-}
-
-.dropdown-lateral:hover .dropdown-content-lateral {
-  display: flex;
-}
-
-/* ===== REPOSICIONAR BOTÕES MOBILE ===== */
-
-/* botão notificações menor */
-#botaoNotificacoes {
-  top: 10px;
-  left: 10px;
-  padding: 8px 12px;
-  font-size: 12px;
-}
-
-/* botão downloads abaixo do notificações */
-.dropdown-lateral {
-  top: 40px;
-  left: 10px;
-  padding: 8px 12px;
-  font-size: 12px;
-}
-
-/* ===== BOTÕES FIXOS ===== */
-
-#botaoNotificacoes {
-  position: fixed;
-  top: 15px;
-  left: 10px;
-  background: linear-gradient(90deg, orange, gold);
-  color: black;
-  padding: 10px 20px;
-  font-weight: bold;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  z-index: 9999;
-  box-shadow: 3px 3px 6px rgba(0,0,0,0.6);
-  transition: 0.3s;
-}
-
-.dropdown-lateral {
-  position: fixed;
-  top: 50px;   /* fica logo abaixo */
-  left: 5px;  /* exatamente igual */
-  z-index: 9999;
-}
-
-/* ===== BOTÃO X DO POPUP ===== */
-
-.popup-conteudo {
-  position: relative; /* necessário para posicionar o X */
 }
 
 .fechar-popup {
@@ -452,7 +507,7 @@ h1 {
   font-weight: bold;
   cursor: pointer;
   color: black;
-  transition: 0.3s;
+  transition: color var(--transicao), transform var(--transicao);
 }
 
 .fechar-popup:hover {
@@ -460,123 +515,76 @@ h1 {
   transform: scale(1.2);
 }
 
-@media (max-width: 768px) {
+/* =========================================================
+   RESPONSIVO — um único breakpoint, sem regras duplicadas
+   ========================================================= */
 
-  /* transportadoras no topo */
-  .transportadoras-topo {
-    top: 10px;
-    left: 0;
-    width: 100%;
-    display: flex;
+@media (max-width: 768px) {
+  .container {
+    margin-top: 3vh;
+    padding: 0 var(--espaco-2);
+  }
+
+  h1 {
+    margin-bottom: var(--espaco-3);
+  }
+
+  .topo-fixo {
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
+  }
+
+  .topo-grupo {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .transportadoras-topo {
+    justify-content: center;
   }
 
   .transportadoras-topo img {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
   }
 
-  /* notificações */
-  #botaoNotificacoes {
-    top: 90px;
-    left: 10px;
+  #botaoNotificacoes,
+  .dropbtn-lateral {
+    padding: 8px 14px;
+    font-size: 0.8rem;
   }
-
-  /* downloads */
-  .dropdown-lateral {
-    top: 90px;
-    right: 10px;
-    left: auto;
-  }
-
-  /* empurra conteúdo para baixo */
-  .container {
-    margin-top: 200px !important;
-  }
-
-  /* campo de busca abaixo de tudo */
-  .search-global {
-    margin-top: 200px;
-  }
-
-}
-@media (max-width: 768px) {
 
   .menu ul {
-    padding: 0;
-    margin: 0 auto;
-    width: 100%;
+    flex-direction: column;
     align-items: center;
+    width: 100%;
+    gap: var(--espaco-2);
   }
 
   .dropdown {
+    width: 100%;
+    max-width: 320px;
     text-align: center;
   }
-
-}
-@media (max-width: 768px) {
 
   .dropbtn {
-    min-width: 260px;
-    text-align: center;
+    display: block;
+    width: 100%;
   }
 
-}
+  .dropdown-content {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: none;
+    margin-top: 8px;
+    box-shadow: none;
+  }
 
-/* ===== BOTÃO GARANTIA PARCEIROS ===== */
-.botao-parceiros {
-  background: linear-gradient(90deg,#6a11cb,#2575fc) !important;
-  color: white !important;
-}
+  .dropdown-content a {
+    font-size: 0.95rem;
+  }
 
-/* ===== BOTÕES TRANSPORTADORAS ===== */
-
-.transportadoras-topo {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  display: flex;
-  gap: 10px;
-  z-index: 9999;
-}
-
-.transportadoras-topo img {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  background: white;
-  padding: 3px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.transportadoras-topo img:hover {
-  transform: scale(1.1);
-}
-
-.procedimento-conteudo {
-  max-width: 700px;
-  margin: 0 auto;
-  text-align: left;
-  background: rgba(0,0,0,0.6);
-  border-radius: 12px;
-  padding: 25px 30px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-}
-
-.procedimento-conteudo h2 {
-  color: gold;
-  margin-top: 0;
-}
-
-.procedimento-texto {
-  line-height: 1.6;
-}
-
-.procedimento-atualizado {
-  margin-top: 20px;
-  font-size: 13px;
-  color: #ffeb3b;
+  .procedimento-conteudo {
+    padding: var(--espaco-3);
+  }
 }
