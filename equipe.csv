@@ -1,0 +1,113 @@
+SETOR,NOME,CELULAR,E-MAIL,RAMAL
+SAC - PÓS VENDAS,KARINA,11 91370-0993,sac@discomercio.com.br,Ramal 307
+GARANTIA - PÓS VENDAS,AMANDA,11 91370-0925,posvendas2@discomercio.com.br,Ramal 310
+DEVOLUÇÃO - PÓS VENDAS,CLARA,11 94078-6813,devolucao@discomercio.com.br,Ramal 308
+OCORRÊNCIAS - LOGÍSTICA,CAMILA,11 99357-0720,ocorrencias@discomercio.com.br,Ramal 412
+OCORRÊNCIAS - LOGÍSTICA,VICTORIA,16 99645-9973,ocorrencias2@discomercio.com.br,Ramal 303
+FRETE - LOGÍSTICA,LUIZ,11 97653-2897,logistica5@discomercio.com.br,Ramal 255
+COORDENADORA - LOGÍSTICA / PÓS VENDAS,PALOMA,11 94153-1743,posvendas1@discomercio.com.br,Ramal 305
+GERENTE - LOGÍSTICA / PÓS VENDAS,ALEXANDRE KETELS,11 99479-5844,admlogistica@discomercio.com.br,Ramal 265
+FATURAMENTO - FISCAL,RICARDO PREGO,11 97884-1296,faturamento@discomercio.com.br,Ramal 253
+COMPRAS,GABRIELA HERNANDES,11 93445-0996,compras@discomercio.com.br,Ramal 254
+COMPRAS,ADAILTON SILVA,11 94111-9760,compras1@discomercio.com.br ,Ramal 605
+GERENTE - LOGÍSTICA - CD,EDILSON,27 99286-6317,cdserra@discomercio.com.br ,Ramal 261
+COORDENADOR - LOGÍSTICA - CD,JEFFERSON,11 91306-8457,vitoria2@discomercio.com.br ,Ramal 701
+EXPEDIÇÃO - LOGÍSTICA - CD,ICARO,11 93286-6748,vitoria3@discomercio.com.br ,Ramal 266
+EXPEDIÇÃO - LOGÍSTICA - CD,LUAN,11 99189-4347,vitoria1@discomercio.com.br ,Ramal 266
+RECEBIMENTO / DEVOLUÇÃO - CD,MARLLON,11 99366-1143,garantia3@discomercio.com.br ,Ramal 302
+RECEBIMENTO / DEVOLUÇÃO - CD,FÁBIO,27 99286-7424,garantia4@discomercio.com.br,Ramal 301
+GERENTE - CRÉDITO,LILIAN,,lilian@discomercio.com.br,Ramal 206
+ANÁLISE DE BOLETOS - CRÉDITO,MARCELA,,analise1@discomercio.com.br,Ramal 204
+ANÁLISE ANTIFRAUDE DE CARTÃO - CRÉDITO,DÉBORA,,antifraude@discomercio.com.br,Ramal 205
+ANÁLISE ANTIFRAUDE DE CARTÃO - CRÉDITO,KATIA,,antifraude@discomercio.com.br,Ramal 213
+COBRANÇA - CRÉDITO,MARIA APARECIDA,,cobranca@discomercio.com.br,Ramal 209
+COBRANÇA - CRÉDITO,ALEXSANDRA,,cobranca2@discomercio.com.br,Ramal 
+GERENTE - FINANCEIRO,EMILY,,emily@discomercio.com.br,Ramal 211
+CONTAS A PAGAR - FINANCEIRO,AMANDA BRITO,,contasapagar@discomercio.com.br ,Ramal 214
+COMPROVANTES - FINANCEIRO,EDUARDA,,comprovantes@discomercio.com.br ,Ramal 203
+ASSISTENTE- FINANCEIRO,FERNANDA,,admfinanceiro@discomercio.com.br ,Ramal 207
+DEPARTAMENTO PESSOAL - RH,MARCOS LIMA,11 99295-0071,dp@discomercio.com.br ,Ramal 
+ADMINISTRAÇÃO - FACILITIES,RAPHAEL GASQUES,11 97653-3398,adm@discomercio.com.br ,Ramal 
+TI,CHARLES,11 99977-9761,disti@discomercio.com.br ,Ramal  263
+COMPRAS,GUSTAVO SOUZA ,11 99209-8726,gustavo.souza@discomercio.com.br ,Ramal 
+GERENTE - COMPRAS,JAIME PASCKOCIMAS,11 94907-1776,jaime@discomercio.com.br ,Ramal
+COORDENADOR - CONTROLADORIA ,WALKER RODRIGUES,11 96616-5271,controle1@discomercio.com.br ,Ramal 
+DIRETOR - CONTROLADORIA,CARLOS PRADO,11 98925-7625,carlos@discomercio.com.br,Ramal
+GERENTE - MARKETING,FELIPE MORENO,11 97070-8374,felipe@discomercio.com.br,Ramal 409
+MARKETING,KESLEY ARAUJO,,kesley@discomercio.com.br,Ramal 609
+COMERCIAL - OPERAÇÕES,LUIS GIANOTTO,11 98763-9580,luis@discomercio.com.br ,Ramal
+RELACIONAMENTO,JULIA,13 99136-0567, relacionamento1@discomercio.com.br,Ramal
+RELACIONAMENTO,ANDREA,11 97848-1219,relacionamento2@discomercio.com.br,Ramal
+MARKETING,GUSTAVO SIMÕES,11 98892-8118,adm.marketing@discomercio.com.br,Ramal
+GERENTE COMERCIAL - LOJA 206,YAN SARAIVA,11 94518-3892,yan@unisarcondicionado.com.br,Ramal 520
+COMERCIAL - LOJA 206,RENATO NOBREGA,11 99414-7122,engenharia1@unisarcondicionado.com.b,Ramal 523
+COMERCIAL - LOJA 206,PEDRO CHAGAS,11 91326-3184,sac@unisarcondicionado.com.br,Ramal 565
+COMERCIAL - LOJA 206,WANESSA ROSA,11 91323-9922,engenharia3@unisarcondicionado.com.br,Ramal 
+COMERCIAL - LOJA 206,FRANS LEON,11 91325-5136,engenharia2@unisarcondicionado.com.br,Ramal 
+CONCILIAÇÃO FISCAL,EDNA GOMES,,conciliacao@discomercio.com.br,Ramal 202
+GERENTE  COMERCIAL - LOJA 214,PAULO PAIVA,11 94979-7880,representacao@unisarcondicionado.com.br ,Ramal
+COMERCIAL - LOJA 214,DANILO SANTOS,11 91370-1090,representacao1@unisarcondicionado.com.br ,Ramal 504
+COMERCIAL - LOJA 214,MATHEUS SOUZA,11 91370-1171,representacao2@unisarcondicionado.com.br ,Ramal
+COMERCIAL - LOJA 212,RODRIGO PAULO,11 91324-6122,representantes@unisarcondicionado.com.br ,Ramal 517
+GERENTE COMERCIAL - LOJA 202,ALTAIR,11 98870-0592,gerencia1@bonshop.com.br ,Ramal
+SUPERVISOR COMERCIAL - LOJA 202,GUSTAVO MARTINS,11 94458-5632,corporativo2@discomercio.com.br,Ramal
+COMERCIAL - LOJA 202,ANDREZA,11 91370-1030,vendas18@bonshop.com.br,Ramal
+COMERCIAL - LOJA 202,BRUNA, 11 91306-5661,vendas3@bonshop.com.br,Ramal
+COMERCIAL - LOJA 202,BRUNO,11 91370-1011,vendas16@bonshop.com.br,Ramal
+COMERCIAL - LOJA 202,CELSO,11 97673-3090,vendas22@bonshop.com.br,Ramal
+COMERCIAL - LOJA 202,CLAUDILENE,11 91306-7916,vendas4@bonshop.com.br,Ramal
+COMERCIAL - LOJA 202,DANIELA BARROS, 11 91306-6640,vendas9@bonshop.com.br,Ramal
+COMERCIAL - LOJA 202,DANIELA BONFIM,11 91306-8867,vendas12@bonshop.com.br,Ramal
+COMERCIAL - LOJA 202,DAYANE,11 96636-7333,vendas11@bonshop.com.br,Ramal
+COMERCIAL - LOJA 202,ELIO,11 97653-2376,vendas20@bonshop.com.br,Ramal
+COMERCIAL - LOJA 202,FAGNER,11 97653-2230,vendas10@bonshop.com.br,Ramal
+COMERCIAL - LOJA 202,FELIPE,11 91526-9211,vendas6@bonshop.com.br,Ramal
+COMERCIAL - LOJA 202,FERNANDA,11 91320-8060,vendas15@bonshop.com.br,Ramal
+COMERCIAL - LOJA 202,GABRIEL, 11 91306-7491,vendas14@bonshop.com.br,Ramal
+COMERCIAL - LOJA 202,LEONARDO,11 91322-1094,vendas8@bonshop.com.br,Ramal
+COMERCIAL - LOJA 202,LUCYANE,11 99145-7739,vendas19@bonshop.com.br,Ramal
+COMERCIAL - LOJA 202,ROBERTA,11 94515-6213,vendas17@bonshop.com.br,Ramal
+COMERCIAL - LOJA 202,VANESSA,11 91306-7087,vendas7@bonshop.com.br,Ramal
+COMERCIAL - LOJA 202,WALMIR,11 94515-3913,vendas21@bonshop.com.br,Ramal
+COMERCIAL - LOJA 202,REGINALDO,11 99328-4536,vendas24@bonshop.com.br,Ramal
+GERENTE - COMERCIAL LOJA 205,KAIQUE,11 94402-8178,kaique@unisarcondicionado.com.br,Ramal 518
+SUPERVISOR COMERCIAL - LOJA 205,MATEUS VIEIRA,11 96602-9222,supervisao@unisarcondicionado.com.br,Ramal 512
+COMERCIAL - LOJA 205,LUCAS FELIPE,11 91321-0973,analista@discomercio.com.br,Ramal 526
+COMERCIAL - LOJA 205,ERICK ZANONI,11 95605-5120,Vendas6@unisarcondicionado.com.br,Ramal 309
+COMERCIAL - LOJA 205,FELIPE SOARES,11 91306-8838,vendas5@unisarcondicionado.com.br,Ramal 514
+COMERCIAL - LOJA 205,GUSTAVO SILVA,11 97150-1866,vendas3@unisarcondicionado.com.br,Ramal 511
+COMERCIAL - LOJA 205,JADIELSON SANTOS,11 97653-2489,vendas2@unisarcondicionado.com.br,Ramal 502
+COMERCIAL - LOJA 205,JABES BARROS,11 99163-8183,vendas4@unisarcondicionado.com.br,Ramal 509
+COMERCIAL - LOJA 205,JOÃO VICTOR MORAES,11 91370-1020,vendas16@unisarcondicionado.com.br,Ramal 519
+COMERCIAL - LOJA 205,LUIS MEDEIROS,11 93485-5042,vendas13@unisarcondicionado.com.br,Ramal 522
+COMERCIAL - LOJA 205,RAPHAEL NAJARRO,11 95244-7513,vendas9@unisarcondicionado.com.br,Ramal 506
+COMERCIAL - LOJA 205,PAULO SILAS,11 91301-8150,vendas10@unisarcondicionado.com.br,Ramal 418
+COMERCIAL - LOJA 205,RAFAEL CRUZ,11 98553-2005,comercial@unisarcondicionado.com.br,Ramal 525
+COMERCIAL - LOJA 205,RAFAEL GOMES,11 97112-3907,vendas19@unisarcondicionado.com.br,Ramal 528
+COMERCIAL - LOJA 205,ROBSON PAIVA,11 99460-9013,vendas8@unisarcondicionado.com.br,Ramal 516
+COMERCIAL - LOJA 205,THIAGO MOURA,11 91306-7765,vendas14@unisarcondicionado.com.br,Ramal 513
+COMERCIAL - LOJA 205,VINICIUS SANTIAGO,11 95080-4943,vendas7@unisarcondicionado.com.br,Ramal 510
+COMERCIAL - LOJA 205,WALTER RANGEL,11 98566-3350,vendas12@unisarcondicionado.com.br,Ramal 521
+COMERCIAL - LOJA 205,LUCAS ALMEIDA,11 99193-0106,vendas11@unisarcondicionado.com.br,Ramal 503
+COMERCIAL - LOJA 205,DANIEL MENEZES,11 97847-9544,vendas18@unisarcondicionado.com.br,Ramal 505
+COMERCIAL - LOJA 205,GUSTAVO OLIVEIRA,13 99689-6228,admcomercial@unisarcondicionado.com.br,Ramal 526
+COMERCIAL - LOJA 205,ANDRE LUIZ SANTANA,11 97847-7538,vendas15@unisarcondicionado.com.br ,Ramal 501
+GERENTE - COMERCIAL LOJA 208,JUDYSON,11 97670-6607,vendasbh4@unisarcondicionado.com.br ,Ramal
+SUPERVISOR COMERCIAL - LOJA 208,GABRIEL JUNIO,11 99174-6129,admbh@unisarcondicionado.com.br ,Ramal
+COMERCIAL - LOJA 208,MATHEUS ALMEIDA,11 97653-1206,vendasbh5@unisarcondicionado.com.br,Ramal
+COMERCIAL - LOJA 208,DEBORA LIMA,21 97173-7124,vendasrj6@unisarcondicionado.com.br,Ramal
+COMERCIAL - LOJA 208,KATIA,13 99182-3660,vendasriviera1@unisarcondicionado.com.br,Ramal
+COMERCIAL - LOJA 208,DIOGO MARINHO ,11 97673-9281,vendasbh1@unisarcondicionado.com.br,Ramal
+COMERCIAL - LOJA 208,TAYRINE LOPES,21 96890-5550,vendas3rj@unisarcondicionado.com.br,Ramal
+COMERCIAL - LOJA 208,PATRICIA SOUZA,13 99181-4206,vendasriviera4@unisarcondicionado.com.br,Ramal
+COMERCIAL - LOJA 208,ELEN CAROLINE,11 97671-6645,vendasbh3@unisarcondicionado.com.br,Ramal
+COMERCIAL - LOJA 208,THAINE VIANA,11 99410-1959,vendasbh6@unisarcondicionado.com.br,Ramal
+COMERCIAL - LOJA 208,HELIDA RIBEIRO,11 97674-1120,vendasbh2@unisarcondicionado.com.br,Ramal
+COMERCIAL - LOJA 208,ALAN ELIEZER,11 99312-7174,vendasbh7@unisarcondicionado.com.br,Ramal
+COMERCIAL - LOJA 208,GLADSTON SANTOS,11 97674-6078,vendasbh@unisarcondicionado.com.br,Ramal
+COMERCIAL - LOJA 208,MAIARA MARQUES,16 99226-2836,vendasinterior4@unisarcondicionado.com.br,Ramal
+COMERCIAL - LOJA 208,WILLIAM NASCIMENTO,21 99078-5595,vendasrj5@unisarcondicionado.com.br,Ramal
+COMERCIAL - LOJA 208,ROBERIO CANDIDO,11 97674-2751,vendasriviera6@unisarcondicionado.com.br,Ramal
+COMERCIAL - LOJA 208,MONIQUE ,13 99182-3660,vendasrj2@unisarcondicionado.com.br,Ramal
+COMERCIAL - LOJA 208,HELLEN CARDOSO,11 94514-3412,vendasinterior2@unisarcondicionado.com.br,Ramal
+AUXILIAR ADMINISTRATIVO - LOJA 202,JULIA MEL,11 91323-4869,adm1@bonshop.com.br,Ramal
