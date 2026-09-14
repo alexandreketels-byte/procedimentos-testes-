@@ -80,6 +80,53 @@ document.querySelectorAll(".dropdown-content a[data-proc]").forEach(link => {
   });
 });
 
+// ===== FORMATAÇÃO SIMPLES (sem precisar digitar HTML) =====
+// Convenções aceitas na coluna "Conteudo" da planilha:
+//   - Linha em branco entre blocos  -> novo parágrafo
+//   - Uma quebra de linha (Alt+Enter) dentro do bloco -> quebra de linha simples
+//   - **palavra**                   -> negrito
+//   - linha começando com "- "      -> vira item de lista com marcadores
+//   - um link (http:// ou https://) colado direto -> vira clicável sozinho
+function escapeHtml(texto) {
+  return texto
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function formatarConteudo(texto) {
+  if (!texto) return "";
+
+  const blocos = texto.replace(/\r\n/g, "\n").split(/\n\s*\n/);
+
+  const html = blocos.map(bloco => {
+    const linhas = bloco.split("\n").filter(l => l.trim() !== "");
+    if (linhas.length === 0) return "";
+
+    const ehLista = linhas.every(l => l.trim().startsWith("- "));
+
+    const aplicarInline = linha => {
+      let l = escapeHtml(linha);
+      // **negrito**
+      l = l.replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+      // link direto (http:// ou https://)
+      l = l.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank">$1</a>');
+      return l;
+    };
+
+    if (ehLista) {
+      const itens = linhas
+        .map(l => `<li>${aplicarInline(l.trim().replace(/^-\s+/, ""))}</li>`)
+        .join("");
+      return `<ul>${itens}</ul>`;
+    }
+
+    return `<p>${linhas.map(aplicarInline).join("<br>")}</p>`;
+  });
+
+  return html.join("");
+}
+
 function mostrarProcedimento(id) {
   const conteudo = document.querySelector(".container");
   const proc = procedimentosData[id];
@@ -108,7 +155,7 @@ function mostrarProcedimento(id) {
 
     <div class="procedimento-conteudo">
       <h2>${proc.titulo}</h2>
-      <div class="procedimento-texto">${proc.conteudo || "<p><em>Conteúdo ainda não preenchido na planilha.</em></p>"}</div>
+      <div class="procedimento-texto">${proc.conteudo ? formatarConteudo(proc.conteudo) : "<p><em>Conteúdo ainda não preenchido na planilha.</em></p>"}</div>
       ${proc.atualizado ? `<p class="procedimento-atualizado">Última atualização: ${proc.atualizado}</p>` : ""}
     </div>
   `;
