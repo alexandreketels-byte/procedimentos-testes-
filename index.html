@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PORTAL DE PROCEDIMENTOS DIS</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <button id="botaoNotificacoes">🔔 Notificações</button>
+
+<div class="transportadoras-topo">
+
+  <a href="http://consulta.atdata.net.br:7124/smonet/#/login" target="_blank">
+    <img src="gfw.png" alt="GFW">
+  </a>
+
+  <a href="https://ssw.inf.br/2/rastreamento?"_blank">
+    <img src="kr.png" alt="KR">
+  </a>
+
+  <a href="https://rodonaves.com.br/rastreio-de-mercadoria?protocolo=&rastreiemercadoria=1&utm_source=google&utm_medium=cpc&utm_campaign=22199396591&utm_content=731832344839&utm_term=rastreio%20rodonaves&gad_source=1&gad_campaignid=22199396591&gbraid=0AAAAACWa-jPtHk5wUPWXs8fkfHU1kpRFV&gclid=CjwKCAjw687NBhB4EiwAQ645dizqYWMdH6W-19HQi-mfXAtyz4BDdYMrwW4fuMldlrQ2lbY3hI0MTRoC1PgQAvD_BwE" target="_blank">
+    <img src="rodonaves.png" alt="Rodonaves">
+  </a>
+
+  <a href="https://ssw.inf.br/2/rastreamento?"_blank">
+    <img src="tg.png" alt="TG">
+  </a>
+
+  <a href="https://smonet.tecmartransportes.com.br/smonet/#/login"_blank">
+    <img src="tecmar.png" alt="Tecmar">
+  </a>
+
+<a href="https://cliente.nrexpress.com.br/rastreamento">
+    <img src="nr express.png" alt="Nr Express">
+  </a>
+
+
+</div>
+
+<div class="dropdown-lateral">
+  <a class="dropbtn-lateral">📥Downloads</a>
+  <div class="dropdown-content-lateral">
+    <a href="FORMULÁRIO DEVOLUÇÃO V3.xlsx" target="_blank">Formulário de Devolução</a>
+    <a href="BT 279 - Check-List para ordens de serviço - LCOM Rev00.pdf" target="_blank">MIDEA - Formulário Garantia</a>
+    <a href="Formulário de Garantia DAIKIN (9).xlsm" target="_blank">DAIKIN - Formulário Garantia</a>
+    <a href="FORMULARIO GREE.pdf" target="_blank">GREE - Formulário Garantia</a>
+    <a href="OSG DIS (1).xlsx" target="_blank">TCL e TRANE - Formulário Garantia</a>
+    <a href="RT-NWS.E.01-REV.01-ANÁLISE DE COMPRESSOR PARA GARANTIA L-CAC E RAC (6).pptx" target="_blank">LG - Formulário Garantia COMPRESSOR</a>
+    <a href="RT-NWS.E.02.REV.01-ANÁLISE DE PLACAS PARA GARANTIA L-CAC E RAC (1) (13).pptx" target="_blank">LG - Formulário Garantia PLACA</a>
+    <a href="RT-NWS.E.03.REV.01-ANÁLISE DE MOTOR PARA GARANTIA L-CAC E RAC (1) (2).pptx" target="_blank">LG - Formulário Garantia MOTOR</a>
+    <a href="RT-NWS.E.04.REV.01-ANÁLISE DE SERPENTINA PARA GARANTIA L-CAC E RAC (6).pptx" target="_blank">LG - Formulário Garantia SERPENTINA</a>
+    <a href="RT-NWS.E.05.REV.01 - ANÁLISE DE PEÇAS EM GERAL PARA GARANTIA L-CAC E RAC EXCLUINDO MOTOR, PLACAS, SERPENTINA E COMPRESSOR (12).pptx" target="_blank">LG - Formulário Garantia PEÇAS EM GERAL</a>
+  </div>
+</div>
+
+<div class="search-global">
+  <input type="text" id="buscaGlobal" placeholder="🔎 Pesquisar procedimentos...">
+  <div id="resultadosBusca"></div>
+</div>
+
+  <div class="container">
+    <h1>PROCEDIMENTOS</h1>
+
+    <!-- 🔹 MENU PRINCIPAL -->
+    <nav class="menu">
+      <ul>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">PÓS VENDAS</a>
+          <div class="dropdown-content">
+            <a href="#" data-proc="pv-como-funciona">Como Funciona o Atendimento?</a>
+            <a href="#" data-proc="pv-assuntos-sac">Quais Assuntos Abrir um Chamado no SAC?</a>
+            <a href="#" data-proc="pv-devolucao-erro-venda">Devolução - Troca - Erro Venda</a>
+            <a href="#" data-proc="pv-devolucao-erro-cliente">Devolução - Troca - Erro Cliente</a>
+            <a href="#" data-proc="nf-devolucao-contribuinte">NF de Devolução - Contribuinte</a>
+            <a href="FORMULÁRIO DEVOLUÇÃO V3.xlsx" target="_blank">Download - Formulário de Devolução</a>
+            <a href="#" data-proc="desconto-taxa-administrativa">Desconto Taxa Administrativa - RT</a>
+            <a href="#" data-proc="cancelamento-pedido-entregue">Cancelamento com Pedido Entregue</a>
+            <a href="#" data-proc="cancelamento-pedido-transito">Cancelamento com Pedido em Trânsito</a>
+            <a href="#" data-proc="cancelamento-pedido-nao-coletado">Cancelamento Pedido não Coletado</a>
+            <a href="#" data-proc="fotos-devolucao">📸 Registro de fotos devolução</a>
+            <a href="#" data-proc="garantia">Garantia</a>
+            <a href="#" data-proc="garantia-parceiros" class="botao-parceiros">Garantia - Parceiros</a>
+            <a href="#" data-proc="garantia-prazos">Garantia - Prazos</a>
+            <a href="#" data-proc="garantia-troca-avaria">Garantia - Troca de Produto com Avaria</a>
+            <a href="#" data-proc="garantia-produto-defeito">Garantia - Produto com Defeito</a>
+            <a href="#" data-proc="garantia-itens-faltantes">Garantia - Itens Faltantes</a>
+            <a href="#" data-proc="ajuste-rt-pedido-entregue">Ajuste de RT com Pedido Entregue</a>
+            <a href="#" data-proc="troca-nota-fiscal">Troca de Nota Fiscal</a>
+            <a href="#" data-proc="venda-danificados">Venda de Danificados</a>
+          </div>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropbtn">LOGÍSTICA</a>
+          <div class="dropdown-content">
+            <a href="https://discomerciologistica.github.io/prazostransportadoras/" target="_blank">Prazos de Entrega</a>
+            <a href="#" data-proc="rastreio-atualizado">Links para Rastreio</a>
+            <a href="https://drive.google.com/drive/folders/1kQxoINEv2PSddw10M72g3qth0l8aDc9f?usp=drive_link">Em Rota GFW</a>
+            <a href="#" data-proc="motivos-abertura-ocorrencia">Quais Assuntos Abrir um Chamado em Ocorrência?</a>
+            <a href="#" data-proc="agendamento-entrega">Agendamento de Entrega</a>
+            <a href="#" data-proc="entrega-dedicada">Entrega Dedicada - Dia ou Período</a>
+            <a href="#" data-proc="checklist-dados-cadastrais">Check list - Dados Cadastrais - Endereço de Entrega</a>
+            <a href="#" data-proc="entrega-vertical">Entrega Vertical</a>
+            <a href="#" data-proc="entrega-condominios">Entregas em Condomínios Fechados</a>
+            <a href="#" data-proc="entrega-zona-rural">Entrega em Zona Rural</a>
+            <a href="#" data-proc="extravio-mercadoria">Extravio de Mercadoria</a>
+            <a href="#" data-proc="retira">Retira</a>
+            <a href="#" data-proc="performance-transportadoras">Performance Transportadoras</a>
+          </div>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropbtn">FATURAMENTO</a>
+          <div class="dropdown-content">
+            <a href="#" data-proc="cancelamento-nota-fiscal">Cancelamento de Nota Fiscal</a>
+            <a href="#" data-proc="consulta-ie">Consulta IE</a>
+            <a href="http://www.sintegra.gov.br/">SINTEGRA</a>
+            <a href="#" data-proc="preenchimento-campo-pedido">Preenchimento - Campo Pedido</a>
+            <a href="#" data-proc="nf-bonificacao">NF de Bonificação</a>
+            <a href="#" data-proc="nf-devolucao-contribuinte">NF de Devolução - Contribuinte</a>
+          </div>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropbtn">ANÁLISE DE CRÉDITO</a>
+          <div class="dropdown-content">
+            <a href="#" data-proc="funcoes-analise-credito">Funções</a>
+
+          </div>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropbtn">FINANCEIRO</a>
+          <div class="dropdown-content">
+            <a href="#" data-proc="funcoes-financeiro">Funções</a>
+            <a href="#" data-proc="desconto-taxa-administrativa">Desconto Taxa Administrativa - RT</a>
+
+          </div>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropbtn">LIBERAÇÃO DE CÓDIGOS</a>
+          <div class="dropdown-content">
+            <a href="#" data-proc="liberacao-codigos">Procedimento para Liberação</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdWl1Oq3WFWfdW12ylid90sZw8y3Ec5m86T6xDdNIEAv5GowQ/viewform">Link - Solicitação de Liberação</a>
+            <a href="https://docs.google.com/spreadsheets/d/1VmDsazDorN7vwz6cV2aBB5qBWQz9NabUVV5NBdhpSD8/edit?gid=2003272604#gid=2003272604">Link - Resposta da Liberação</a>
+          </div>
+        </li>
+
+         <li class="dropdown">
+          <a href="#" class="dropbtn">REGULAMENTO INTERNO</a>
+          <div class="dropdown-content">
+            <a href="#" data-proc="regulamento-interno">Regulamento Interno</a>
+          </div>
+        </li>
+
+          <li class="dropdown">
+          <a href="#" class="dropbtn">COMUNICADOS</a>
+          <div class="dropdown-content">
+            <a href="#" data-proc="comunicado-desconto-taxa">Desconto Taxa Administrativa</a>
+
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- 🔹 CAMPO DE PESQUISA -->
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="🔍 Buscar por nome ou setor...">
+    </div>
+
+    <!-- 🔹 TÍTULO DE CONTATOS -->
+    <h2 class="titulo-contatos">CONTATOS</h2>
+
+    <!-- 🔹 CARDS DE EQUIPE -->
+    <div id="cardsContainer" class="cards-container"></div>
+
+    <!-- 🔹 INFORMAÇÕES FINAIS -->
+    <p id="contadorResultados"></p>
+    <p id="ultimaAtualizacao">Última atualização: --</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
