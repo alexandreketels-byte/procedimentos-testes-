@@ -8,52 +8,48 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-  <button id="botaoNotificacoes">🔔 Notificações</button>
+  <header class="topo-fixo">
+    <div class="topo-grupo">
+      <button id="botaoNotificacoes">🔔 Notificações</button>
 
-<div class="transportadoras-topo">
+      <div class="dropdown-lateral">
+        <a class="dropbtn-lateral">📥 Downloads</a>
+        <div class="dropdown-content-lateral">
+          <a href="FORMULÁRIO DEVOLUÇÃO V3.xlsx" target="_blank">Formulário de Devolução</a>
+          <a href="BT 279 - Check-List para ordens de serviço - LCOM Rev00.pdf" target="_blank">MIDEA - Formulário Garantia</a>
+          <a href="Formulário de Garantia DAIKIN (9).xlsm" target="_blank">DAIKIN - Formulário Garantia</a>
+          <a href="FORMULARIO GREE.pdf" target="_blank">GREE - Formulário Garantia</a>
+          <a href="OSG DIS (1).xlsx" target="_blank">TCL e TRANE - Formulário Garantia</a>
+          <a href="RT-NWS.E.01-REV.01-ANÁLISE DE COMPRESSOR PARA GARANTIA L-CAC E RAC (6).pptx" target="_blank">LG - Formulário Garantia COMPRESSOR</a>
+          <a href="RT-NWS.E.02.REV.01-ANÁLISE DE PLACAS PARA GARANTIA L-CAC E RAC (1) (13).pptx" target="_blank">LG - Formulário Garantia PLACA</a>
+          <a href="RT-NWS.E.03.REV.01-ANÁLISE DE MOTOR PARA GARANTIA L-CAC E RAC (1) (2).pptx" target="_blank">LG - Formulário Garantia MOTOR</a>
+          <a href="RT-NWS.E.04.REV.01-ANÁLISE DE SERPENTINA PARA GARANTIA L-CAC E RAC (6).pptx" target="_blank">LG - Formulário Garantia SERPENTINA</a>
+          <a href="RT-NWS.E.05.REV.01 - ANÁLISE DE PEÇAS EM GERAL PARA GARANTIA L-CAC E RAC EXCLUINDO MOTOR, PLACAS, SERPENTINA E COMPRESSOR (12).pptx" target="_blank">LG - Formulário Garantia PEÇAS EM GERAL</a>
+        </div>
+      </div>
+    </div>
 
-  <a href="http://consulta.atdata.net.br:7124/smonet/#/login" target="_blank">
-    <img src="gfw.png" alt="GFW">
-  </a>
-
-  <a href="https://ssw.inf.br/2/rastreamento?"_blank">
-    <img src="kr.png" alt="KR">
-  </a>
-
-  <a href="https://rodonaves.com.br/rastreio-de-mercadoria?protocolo=&rastreiemercadoria=1&utm_source=google&utm_medium=cpc&utm_campaign=22199396591&utm_content=731832344839&utm_term=rastreio%20rodonaves&gad_source=1&gad_campaignid=22199396591&gbraid=0AAAAACWa-jPtHk5wUPWXs8fkfHU1kpRFV&gclid=CjwKCAjw687NBhB4EiwAQ645dizqYWMdH6W-19HQi-mfXAtyz4BDdYMrwW4fuMldlrQ2lbY3hI0MTRoC1PgQAvD_BwE" target="_blank">
-    <img src="rodonaves.png" alt="Rodonaves">
-  </a>
-
-  <a href="https://ssw.inf.br/2/rastreamento?"_blank">
-    <img src="tg.png" alt="TG">
-  </a>
-
-  <a href="https://smonet.tecmartransportes.com.br/smonet/#/login"_blank">
-    <img src="tecmar.png" alt="Tecmar">
-  </a>
-
-<a href="https://cliente.nrexpress.com.br/rastreamento">
-    <img src="nr express.png" alt="Nr Express">
-  </a>
-
-
-</div>
-
-<div class="dropdown-lateral">
-  <a class="dropbtn-lateral">📥Downloads</a>
-  <div class="dropdown-content-lateral">
-    <a href="FORMULÁRIO DEVOLUÇÃO V3.xlsx" target="_blank">Formulário de Devolução</a>
-    <a href="BT 279 - Check-List para ordens de serviço - LCOM Rev00.pdf" target="_blank">MIDEA - Formulário Garantia</a>
-    <a href="Formulário de Garantia DAIKIN (9).xlsm" target="_blank">DAIKIN - Formulário Garantia</a>
-    <a href="FORMULARIO GREE.pdf" target="_blank">GREE - Formulário Garantia</a>
-    <a href="OSG DIS (1).xlsx" target="_blank">TCL e TRANE - Formulário Garantia</a>
-    <a href="RT-NWS.E.01-REV.01-ANÁLISE DE COMPRESSOR PARA GARANTIA L-CAC E RAC (6).pptx" target="_blank">LG - Formulário Garantia COMPRESSOR</a>
-    <a href="RT-NWS.E.02.REV.01-ANÁLISE DE PLACAS PARA GARANTIA L-CAC E RAC (1) (13).pptx" target="_blank">LG - Formulário Garantia PLACA</a>
-    <a href="RT-NWS.E.03.REV.01-ANÁLISE DE MOTOR PARA GARANTIA L-CAC E RAC (1) (2).pptx" target="_blank">LG - Formulário Garantia MOTOR</a>
-    <a href="RT-NWS.E.04.REV.01-ANÁLISE DE SERPENTINA PARA GARANTIA L-CAC E RAC (6).pptx" target="_blank">LG - Formulário Garantia SERPENTINA</a>
-    <a href="RT-NWS.E.05.REV.01 - ANÁLISE DE PEÇAS EM GERAL PARA GARANTIA L-CAC E RAC EXCLUINDO MOTOR, PLACAS, SERPENTINA E COMPRESSOR (12).pptx" target="_blank">LG - Formulário Garantia PEÇAS EM GERAL</a>
-  </div>
-</div>
+    <div class="topo-grupo transportadoras-topo">
+      <a href="http://consulta.atdata.net.br:7124/smonet/#/login" target="_blank" title="GFW">
+        <img src="gfw.png" alt="GFW">
+      </a>
+      <a href="https://ssw.inf.br/2/rastreamento?" target="_blank" title="KR">
+        <img src="kr.png" alt="KR">
+      </a>
+      <a href="https://rodonaves.com.br/rastreio-de-mercadoria?protocolo=&rastreiemercadoria=1&utm_source=google&utm_medium=cpc&utm_campaign=22199396591&utm_content=731832344839&utm_term=rastreio%20rodonaves&gad_source=1&gad_campaignid=22199396591&gbraid=0AAAAACWa-jPtHk5wUPWXs8fkfHU1kpRFV&gclid=CjwKCAjw687NBhB4EiwAQ645dizqYWMdH6W-19HQi-mfXAtyz4BDdYMrwW4fuMldlrQ2lbY3hI0MTRoC1PgQAvD_BwE" target="_blank" title="Rodonaves">
+        <img src="rodonaves.png" alt="Rodonaves">
+      </a>
+      <a href="https://ssw.inf.br/2/rastreamento?" target="_blank" title="TG">
+        <img src="tg.png" alt="TG">
+      </a>
+      <a href="https://smonet.tecmartransportes.com.br/smonet/#/login" target="_blank" title="Tecmar">
+        <img src="tecmar.png" alt="Tecmar">
+      </a>
+      <a href="https://cliente.nrexpress.com.br/rastreamento" target="_blank" title="Nr Express">
+        <img src="nr express.png" alt="Nr Express">
+      </a>
+    </div>
+  </header>
 
 <div class="search-global">
   <input type="text" id="buscaGlobal" placeholder="🔎 Pesquisar procedimentos...">
