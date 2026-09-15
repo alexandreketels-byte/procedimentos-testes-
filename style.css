@@ -588,3 +588,303 @@ h1 {
     padding: var(--espaco-3);
   }
 }
+
+/* =========================================================
+   MODO EDIÇÃO (login por PIN + editor visual)
+   ========================================================= */
+
+#botaoAdm {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--texto-claro);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  transition: transform var(--transicao), background var(--transicao);
+}
+
+#botaoAdm:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+#botaoAdm.adm-ativo {
+  background: var(--gradiente-downloads);
+  color: black;
+  border-color: transparent;
+}
+
+/* ===== BARRA DE AÇÕES DO PROCEDIMENTO ===== */
+
+.barra-procedimento {
+  display: flex;
+  justify-content: center;
+  gap: var(--espaco-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--espaco-3);
+}
+
+.botao-editar,
+.botao-salvar {
+  background: var(--gradiente-downloads);
+  color: black;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: bold;
+  box-shadow: var(--sombra-media);
+  cursor: pointer;
+  transition: transform var(--transicao);
+}
+
+.botao-editar:hover,
+.botao-salvar:hover {
+  transform: scale(1.05);
+}
+
+.botao-salvar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===== ÁREA DO EDITOR ===== */
+
+.editor-wrapper {
+  max-width: var(--largura-leitura);
+  margin: 0 auto;
+  text-align: left;
+  background: var(--vidro-medio);
+  border-radius: 12px;
+  padding: var(--espaco-4);
+  box-shadow: var(--sombra-suave);
+  backdrop-filter: blur(6px);
+}
+
+.editor-titulo {
+  color: var(--texto-acento);
+  margin-top: 0;
+  font-size: 1.4rem;
+}
+
+.editor-ferramentas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espaco-1);
+  padding: var(--espaco-1);
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  margin-bottom: var(--espaco-2);
+}
+
+.editor-ferramentas button {
+  background: rgba(255, 255, 255, 0.9);
+  color: black;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  min-width: 40px;
+  transition: transform var(--transicao), background var(--transicao);
+}
+
+.editor-ferramentas button:hover {
+  background: var(--dourado);
+  transform: scale(1.05);
+}
+
+.editor-separador {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.editor-cor {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--texto-claro);
+}
+
+.editor-cor input[type="color"] {
+  width: 38px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.editor-area {
+  min-height: 300px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  padding: var(--espaco-3);
+  color: var(--texto-claro);
+  line-height: 1.65;
+  outline: none;
+  overflow-y: auto;
+}
+
+.editor-area:focus {
+  border-color: var(--dourado);
+}
+
+.editor-area p {
+  margin: 0 0 14px;
+}
+
+.editor-area ul,
+.editor-area ol {
+  padding-left: 22px;
+}
+
+.editor-dica {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: var(--espaco-1) 0 0;
+}
+
+.editor-status {
+  font-size: 14px;
+  font-weight: bold;
+  margin: var(--espaco-1) 0 0;
+  min-height: 20px;
+}
+
+.editor-status.sucesso {
+  color: #5cd65c;
+}
+
+.editor-status.erro {
+  color: #ff6b6b;
+}
+
+/* ===== MODAL DE LOGIN ADM ===== */
+
+#modalAdm {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  padding: var(--espaco-2);
+}
+
+#modalAdm .modal-conteudo {
+  position: relative;
+  background: white;
+  color: black;
+  padding: var(--espaco-4);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 340px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+#modalAdm h3 {
+  margin: 0 0 var(--espaco-1);
+  color: #333;
+}
+
+#modalAdm p {
+  margin: 0 0 var(--espaco-2);
+  font-size: 0.9rem;
+  color: #666;
+}
+
+#modalAdm input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.2rem;
+  text-align: center;
+  letter-spacing: 4px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  margin-bottom: var(--espaco-2);
+}
+
+#modalAdm input[type="password"]:focus {
+  border-color: var(--laranja);
+}
+
+#modalAdm button {
+  width: 100%;
+  background: var(--gradiente);
+  color: black;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform var(--transicao);
+}
+
+#modalAdm button:hover {
+  transform: scale(1.02);
+}
+
+#modalAdm .editor-status.erro {
+  color: #d32f2f;
+}
+
+/* ===== VISUALIZADOR DE PDF ===== */
+
+.visualizador-pdf {
+  width: 100%;
+  max-width: 1000px;
+  height: 85vh;
+  border: none;
+  border-radius: var(--raio);
+  box-shadow: var(--sombra-suave);
+}
+
+/* ===== AJUSTES MOBILE DO EDITOR ===== */
+
+@media (max-width: 768px) {
+  #botaoAdm {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+  }
+
+  .editor-wrapper {
+    padding: var(--espaco-3) var(--espaco-2);
+  }
+
+  .editor-ferramentas button {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+
+  .editor-area {
+    min-height: 240px;
+    padding: var(--espaco-2);
+  }
+
+  .barra-procedimento {
+    flex-direction: row;
+  }
+
+  .botao-editar,
+  .botao-salvar,
+  .botao-voltar {
+    flex: 1;
+    min-width: 130px;
+  }
+}
