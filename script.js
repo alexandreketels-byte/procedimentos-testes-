@@ -138,28 +138,39 @@ function buscarComRetry(tentativa = 1) {
 }
 
 function carregarProcedimentos() {
-  estadoCarga = "carregando";
+  const cache = lerCache();
+
+  if (cache) {
+    // Mostra a última cópia conhecida IMEDIATAMENTE, sem esperar a rede.
+    // A tela fica pronta na hora; a versão fresca chega por trás.
+    procedimentosData = cache;
+    estadoCarga = "cache";
+  } else {
+    estadoCarga = "carregando";
+  }
 
   promessaCarga = buscarComRetry()
     .then(json => {
       procedimentosData = json;
       estadoCarga = "ok";
       gravarCache(json);
+
+      // Se o usuário já estava vendo um procedimento (a partir do cache),
+      // atualiza a tela em segundo plano assim que o dado fresco chegar.
+      if (procAtual && document.getElementById("textoProcedimento")) {
+        renderizarProcedimento(procAtual);
+      }
+
       return json;
     })
     .catch(erro => {
       console.error("Falha ao carregar procedimentos:", erro.message);
 
-      const cache = lerCache();
-      if (cache) {
-        // Não deixa a tela vazia: usa a última cópia conhecida
-        procedimentosData = cache;
-        estadoCarga = "cache";
-        console.log("Usando cópia local dos procedimentos.");
-      } else {
+      if (!cache) {
         procedimentosData = {};
         estadoCarga = "erro";
       }
+      // se já havia cache, mantém estadoCarga = "cache" e segue usando ele
       return procedimentosData;
     });
 
