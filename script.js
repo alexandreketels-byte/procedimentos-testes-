@@ -137,6 +137,23 @@ function buscarComRetry(tentativa = 1) {
     });
 }
 
+let temporizadorRevalidacao = null;
+
+// Enquanto o site estiver em "cache" (mostrando cópia local) ou "erro",
+// continua tentando buscar a versão atual sozinho, sem precisar de F5.
+function agendarRevalidacao() {
+  if (temporizadorRevalidacao) return; // já tem uma tentativa agendada
+
+  temporizadorRevalidacao = setTimeout(() => {
+    temporizadorRevalidacao = null;
+    carregarProcedimentos().then(() => {
+      if (estadoCarga !== "ok") {
+        agendarRevalidacao(); // ainda sem sucesso — agenda a próxima
+      }
+    });
+  }, 15000);
+}
+
 function carregarProcedimentos() {
   const cache = lerCache();
 
@@ -171,6 +188,8 @@ function carregarProcedimentos() {
         estadoCarga = "erro";
       }
       // se já havia cache, mantém estadoCarga = "cache" e segue usando ele
+
+      agendarRevalidacao();
       return procedimentosData;
     });
 
@@ -301,9 +320,23 @@ function renderizarProcedimento(id) {
         ${proc.conteudo ? formatarConteudo(proc.conteudo) : "<p><em>Conteúdo ainda não preenchido.</em></p>"}
       </div>
       ${proc.atualizado ? `<p class="procedimento-atualizado">Última atualização: ${proc.atualizado}</p>` : ""}
-      ${estadoCarga === "cache" ? `<p class="erro-aviso">⚠️ Sem conexão com a planilha — exibindo cópia local. Não edite agora.</p>` : ""}
+      ${estadoCarga === "cache" ? `
+        <p class="erro-aviso">
+          ⚠️ Sem conexão com a planilha — exibindo cópia local. Não edite agora.
+          <button class="botao-tentar-inline" id="btnRevalidarAgora">🔄 Tentar agora</button>
+        </p>
+      ` : ""}
     </div>
   `;
+
+  const btnRevalidarAgora = document.getElementById("btnRevalidarAgora");
+  if (btnRevalidarAgora) {
+    btnRevalidarAgora.addEventListener("click", () => {
+      btnRevalidarAgora.disabled = true;
+      btnRevalidarAgora.textContent = "Tentando...";
+      carregarProcedimentos().then(() => renderizarProcedimento(id));
+    });
+  }
 
   const btnEditar = document.getElementById("btnEditar");
   if (btnEditar) {
