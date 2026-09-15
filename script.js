@@ -68,13 +68,102 @@ if (inputContatos) {
 
 // ===== PROCEDIMENTOS (vindos da planilha) =====
 
-function carregarProcedimentos() {
+// Estado do carregamento: "carregando" | "ok" | "erro"
+let estadoCarga = "carregando";
+let promessaCarga = null;
+const CACHE_KEY = "procedimentos_cache_v1";
+
+// Tenta recuperar a última cópia salva no navegador.
+// Serve de rede de segurança: se o Apps Script estiver fora do ar,
+// o usuário ainda vê o último conteúdo conhecido em vez de tela vazia.
+function lerCache() {
+  try {
+    const bruto = localStorage.getItem(CACHE_KEY);
+    return bruto ? JSON.parse(bruto) : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function gravarCache(dados) {
+  try {
+    localStorage.setItem(CACHE_KEY, JSON.stringify(dados));
+  } catch (e) {
+    // localStorage cheio ou bloqueado — não é crítico, segue sem cache
+  }
+}
+
+// Busca com tentativas: o Apps Script às vezes demora no primeiro acesso
+// do dia (cold start) ou devolve erro temporário. Uma única tentativa
+// fazia a tela ficar vazia sem explicação.
+function buscarComRetry(tentativa = 1) {
+  const MAX_TENTATIVAS = 3;
+
   return fetch(APPS_SCRIPT_URL + "?t=" + Date.now())
-    .then(r => r.json())
+    .then(r => {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.text();
+    })
+    .then(texto => {
+      // Se o Apps Script devolver uma página de erro em HTML,
+      // JSON.parse falha — tratamos como erro de verdade, não como dado vazio.
+      let json;
+      try {
+        json = JSON.parse(texto);
+      } catch (e) {
+        throw new Error("Resposta não é JSON (provável erro do Apps Script)");
+      }
+
+      if (!json || typeof json !== "object" || Array.isArray(json)) {
+        throw new Error("Formato inesperado da resposta");
+      }
+
+      // Erro estruturado devolvido pelo próprio Apps Script
+      if (json.__erro) {
+        throw new Error("Apps Script: " + json.__erro);
+      }
+
+      return json;
+    })
+    .catch(erro => {
+      if (tentativa < MAX_TENTATIVAS) {
+        console.log(`Tentativa ${tentativa} falhou (${erro.message}). Tentando de novo...`);
+        // espera crescente: 600ms, depois 1500ms
+        const espera = tentativa === 1 ? 600 : 1500;
+        return new Promise(resolve => setTimeout(resolve, espera))
+          .then(() => buscarComRetry(tentativa + 1));
+      }
+      throw erro;
+    });
+}
+
+function carregarProcedimentos() {
+  estadoCarga = "carregando";
+
+  promessaCarga = buscarComRetry()
     .then(json => {
       procedimentosData = json;
+      estadoCarga = "ok";
+      gravarCache(json);
+      return json;
     })
-    .catch(() => console.log("Não foi possível carregar os procedimentos da planilha."));
+    .catch(erro => {
+      console.error("Falha ao carregar procedimentos:", erro.message);
+
+      const cache = lerCache();
+      if (cache) {
+        // Não deixa a tela vazia: usa a última cópia conhecida
+        procedimentosData = cache;
+        estadoCarga = "cache";
+        console.log("Usando cópia local dos procedimentos.");
+      } else {
+        procedimentosData = {};
+        estadoCarga = "erro";
+      }
+      return procedimentosData;
+    });
+
+  return promessaCarga;
 }
 
 carregarProcedimentos();
@@ -132,13 +221,59 @@ function formatarConteudo(texto) {
 
 function mostrarProcedimento(id) {
   const conteudo = document.querySelector(".container");
-  const proc = procedimentosData[id];
   procAtual = id;
+
+  // Se os dados ainda não chegaram, mostra "carregando" e ESPERA.
+  // Antes, um clique rápido logo após abrir o site caía num
+  // procedimentosData vazio e a tela aparecia sem conteúdo.
+  if (estadoCarga === "carregando") {
+    conteudo.innerHTML = `
+      <button class="botao-voltar" onclick="location.reload()">⬅ Voltar</button>
+      <div class="procedimento-conteudo">
+        <p class="carregando-aviso">⏳ Carregando procedimento...</p>
+      </div>
+    `;
+
+    if (promessaCarga) {
+      promessaCarga.then(() => {
+        // só redesenha se o usuário ainda estiver nesta mesma tela
+        if (procAtual === id) renderizarProcedimento(id);
+      });
+    }
+    return;
+  }
+
+  renderizarProcedimento(id);
+}
+
+function renderizarProcedimento(id) {
+  const conteudo = document.querySelector(".container");
+  const proc = procedimentosData[id];
+
+  // Falha real de conexão — agora avisa em vez de ficar em branco
+  if (estadoCarga === "erro") {
+    conteudo.innerHTML = `
+      <button class="botao-voltar" onclick="location.reload()">⬅ Voltar</button>
+      <div class="procedimento-conteudo">
+        <p class="erro-aviso">⚠️ Não foi possível carregar os procedimentos.</p>
+        <p>Verifique sua conexão e tente novamente.</p>
+        <button class="botao-editar" id="btnTentarNovamente">🔄 Tentar novamente</button>
+      </div>
+    `;
+    document.getElementById("btnTentarNovamente").addEventListener("click", () => {
+      carregarProcedimentos().then(() => mostrarProcedimento(id));
+      mostrarProcedimento(id);
+    });
+    return;
+  }
 
   if (!proc) {
     conteudo.innerHTML = `
       <button class="botao-voltar" onclick="location.reload()">⬅ Voltar</button>
-      <p>Procedimento ainda não cadastrado ou não encontrado.</p>
+      <div class="procedimento-conteudo">
+        <p class="erro-aviso">Procedimento não encontrado na planilha.</p>
+        <p>Confira se existe uma linha com o ID <b>${escapeHtml(id)}</b> na aba Procedimentos.</p>
+      </div>
     `;
     return;
   }
@@ -146,7 +281,7 @@ function mostrarProcedimento(id) {
   conteudo.innerHTML = `
     <div class="barra-procedimento">
       <button class="botao-voltar" onclick="location.reload()">⬅ Voltar</button>
-      ${pinAdm ? `<button class="botao-editar" id="btnEditar">✏️ Editar</button>` : ""}
+      ${pinAdm && estadoCarga === "ok" ? `<button class="botao-editar" id="btnEditar">✏️ Editar</button>` : ""}
     </div>
 
     <div class="procedimento-conteudo">
@@ -155,6 +290,7 @@ function mostrarProcedimento(id) {
         ${proc.conteudo ? formatarConteudo(proc.conteudo) : "<p><em>Conteúdo ainda não preenchido.</em></p>"}
       </div>
       ${proc.atualizado ? `<p class="procedimento-atualizado">Última atualização: ${proc.atualizado}</p>` : ""}
+      ${estadoCarga === "cache" ? `<p class="erro-aviso">⚠️ Sem conexão com a planilha — exibindo cópia local. Não edite agora.</p>` : ""}
     </div>
   `;
 
