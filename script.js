@@ -98,15 +98,16 @@ function gravarCache(dados) {
 // fazia a tela ficar vazia sem explicação.
 function buscarComRetry(tentativa = 1) {
   const MAX_TENTATIVAS = 3;
+  const inicio = performance.now();
 
   return fetch(APPS_SCRIPT_URL + "?t=" + Date.now())
     .then(r => {
+      const ms = Math.round(performance.now() - inicio);
+      console.log(`[procedimentos] tentativa ${tentativa}: HTTP ${r.status} em ${ms}ms`);
       if (!r.ok) throw new Error("HTTP " + r.status);
       return r.text();
     })
     .then(texto => {
-      // Se o Apps Script devolver uma página de erro em HTML,
-      // JSON.parse falha — tratamos como erro de verdade, não como dado vazio.
       let json;
       try {
         json = JSON.parse(texto);
@@ -118,7 +119,6 @@ function buscarComRetry(tentativa = 1) {
         throw new Error("Formato inesperado da resposta");
       }
 
-      // Erro estruturado devolvido pelo próprio Apps Script
       if (json.__erro) {
         throw new Error("Apps Script: " + json.__erro);
       }
@@ -126,9 +126,10 @@ function buscarComRetry(tentativa = 1) {
       return json;
     })
     .catch(erro => {
+      const ms = Math.round(performance.now() - inicio);
+      console.log(`[procedimentos] tentativa ${tentativa} FALHOU em ${ms}ms: ${erro.message}`);
+
       if (tentativa < MAX_TENTATIVAS) {
-        console.log(`Tentativa ${tentativa} falhou (${erro.message}). Tentando de novo...`);
-        // espera crescente: 600ms, depois 1500ms
         const espera = tentativa === 1 ? 600 : 1500;
         return new Promise(resolve => setTimeout(resolve, espera))
           .then(() => buscarComRetry(tentativa + 1));
