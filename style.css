@@ -888,3 +888,22 @@ h1 {
     min-width: 130px;
   }
 }
+
+/* ===== AVISOS DE CARREGAMENTO E ERRO ===== */
+
+.carregando-aviso {
+  text-align: center;
+  font-size: 1.05rem;
+  color: var(--texto-alerta);
+  padding: var(--espaco-4) 0;
+}
+
+.erro-aviso {
+  color: #ff9b6b;
+  font-weight: bold;
+  margin-bottom: var(--espaco-2);
+}
+
+.procedimento-conteudo .botao-editar {
+  margin-top: var(--espaco-2);
+}
